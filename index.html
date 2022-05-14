@@ -1,0 +1,1256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        .ocultar{
+            visibility: hidden;
+        }
+
+        .mostrar{
+            visibility: visible;
+        }
+
+        body{
+            background-image: url("./imgFondoPastel.jpg");
+            
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        select{
+            margin: 5px;
+        }
+
+        #frmAbm{
+           
+            background-image: url("./imgFondoAbm.jpg");
+            border: 5px dotted white;
+            width: 600px;
+            padding: 20px;
+            margin: 20px 20px;
+        }
+
+        #frmAbm h2{
+            font-family:Verdana, Geneva, Tahoma, sans-serif;
+            
+        }
+
+        label{
+            font-style: italic;
+            font-weight: bold;
+        }
+
+        tr, td{
+            border-collapse: collapse;
+            border: 1px solid white;
+            background-color: rgba(180,0,180,0.1);
+            border-radius: 5px;
+        }
+
+        #filaChk{
+            background-color: white;
+        }
+
+        #filaChk td{
+            padding: 5px;
+        }
+
+        thead{
+            background-color: rgba(180,0,180,0.3);
+        }
+
+        .btnTHead
+        {
+            border-style: none;
+            background-color: transparent;
+        }
+
+        input:not([type="text"],[class="btnTHead"]){
+            
+            background-color:rgb(62, 50, 50);
+            color: white;
+            border: none;
+            font-size: medium;
+            margin: 10px 5px 5px 0;
+        }
+
+        #frmAbm input{
+            margin-bottom: 3px; 
+        }
+
+    </style>
+    <title>Recuperatorio</title>
+</head>
+<body>
+    
+    <h1>Form Datos</h1>
+    <form id="frmTabla">
+        <label for="cmbFiltrar">Filtrar por:</label>
+        <select id="cmbFiltrar">
+            <option>Todos</option>
+            <option>Aereos</option>
+            <option>Terrestres</option>
+        </select>
+        <table>
+            <tr id="filaChk">
+                <td><input type="checkbox" id="chkId" checked><label for="chkId">ID</label></td>
+                    <td><input type="checkbox" id="chkModelo" checked><label for="chkModelo">Modelo</label></td>
+                    <td><input type="checkbox" id="chkAnoFab" checked><label for="chkAnoFab">AñoFab</label></td>
+                    <td><input type="checkbox" id="chkVelMax" checked><label for="chkVelMax">VelMax</label></td>
+                    <td><input type="checkbox" id="chkAltMax" checked><label for="chkAltMax">AltMax</label></td>
+                    <td><input type="checkbox" id="chkAutonomia" checked><label for="chkAutonomia">Autonomia</label></td>
+                    <td><input type="checkbox" id="chkCantPue" checked><label for="chkCantPue">CantPue</label></td>
+                    <td><input type="checkbox" id="chkCantRue" checked><label for="chkCantRue">CantRue</label></td>
+                </tr>
+        </table>
+        <br>
+        <label for="txtCalcular">Promedio Velocidad Maxima:</label>
+        <input type="text" id="txtCalcular">
+        <input type="button" id="btnCalcular" value="Calcular">
+        <br>
+        <table>
+            <thead>
+                <tr id="filaBtn">
+                    <td><input type="button" id="btnId" value="Id" class="btnTHead"></td>
+                    <td><input type="button" id="btnModelo" value="Modelo" class="btnTHead"></td>
+                    <td><input type="button" id="btnAnoFab" value="Año fabricacion" class="btnTHead"></td>
+                    <td><input type="button" id="btnVelMax" value="Vel Max" class="btnTHead"></td>
+                    <td><input type="button" id="btnAltMax" value="Alt Max" class="btnTHead"></td>
+                    <td><input type="button" id="btnAutonomia" value="Autonomia" class="btnTHead"></td>
+                    <td><input type="button" id="btnCantPue" value="Cant Pue" class="btnTHead"></td>
+                    <td><input type="button" id="btnCantRue" value="Cant Rue" class="btnTHead"></td>
+                </tr>
+            </thead>
+            <tbody id="cuerpoTabla">
+
+            </tbody>
+        </table>
+    </form>
+        <input type="button" id="btnAgregar" value="Agregar">
+
+        <form id="frmAbm" class="ocultar">
+            <h2>Form ABM</h2>
+            <label for="txtId">Id</label><br>
+            <input type="text" id="txtId" readonly>
+            <br>
+            <label for="txtModelo">Modelo</label><br>
+            <input type="text" id="txtModelo">
+            <br>
+            <label for="txtAnoFab">Año Fabricacion</label><br>
+            <input type="text" id="txtAnoFab">
+            <br>
+            <label for="txtVelMax">Velocidad Maxima</label><br>
+            <input type="text" id="txtVelMax">
+            <br>
+            <select id="cmbTipo">
+                <option>Aereo</option>
+                <option>Terrestre</option>
+            </select>
+            <br>
+            <label for="txtAltMax" id="lblAltMax">Altura Maxima</label><br>
+            <input type="text" id="txtAltMax">
+            <br>
+            <label for="txtAutonomia" id="lblAutonomia">Autonomia</label><br>
+            <input type="text" id="txtAutonomia">
+            <br>
+            <label for="txtCantPue" id="lblCantPue" class="ocultar">Cantidad Puertas</label><br>
+            <input type="text" id="txtCantPue" class="ocultar">
+            <br>
+            <label for="txtCantRue" id="lblCantRue" class="ocultar">Cantidad Ruedas</label><br>
+            <input type="text" id="txtCantRue" class="ocultar">
+            <br>
+            <input type="button" id="btnAgregarATabla" value="Agregar">
+            <input type="button" id="btnModificar" value="Modificar">
+            <input type="button" id="btnEliminar" value="Eliminar">
+            <input type="button" id="btnCancelar" value="Cancelar">
+        </form>
+
+    <script>
+        const cuerpoTabla = document.getElementById("cuerpoTabla");
+        const btnAgregar = document.getElementById("btnAgregar");
+        const frmAbm = document.getElementById("frmAbm");
+        const filaChk = document.getElementById("filaChk");
+        const cmbFiltro = document.getElementById("cmbFiltrar");
+        const btnCalcular = document.getElementById("btnCalcular");
+
+        const btnId = document.getElementById("btnId");
+        const btnModelo = document.getElementById("btnModelo");
+        const btnAnoFab = document.getElementById("btnAnoFab");
+        const btnVelMax = document.getElementById("btnVelMax");
+        const btnAltMax = document.getElementById("btnAltMax");
+        const btnAutonomia = document.getElementById("btnAutonomia");
+        const btnCantPue = document.getElementById("btnCantPue");
+        const btnCantRue = document.getElementById("btnCantRue");
+
+        const cmbTipo = document.getElementById("cmbTipo");
+        const txtId = document.getElementById("txtId");
+        const txtModelo = document.getElementById("txtModelo");
+        const txtAnoFab = document.getElementById("txtAnoFab");
+        const txtVelMax = document.getElementById("txtVelMax");
+        const txtAltMax = document.getElementById("txtAltMax");
+        const txtAutonomia = document.getElementById("txtAutonomia");
+        const txtCantPue = document.getElementById("txtCantPue");
+        const txtCantRue = document.getElementById("txtCantRue");
+
+        const btnModificar = document.getElementById("btnModificar");
+        const lblAltMax = document.getElementById("lblAltMax");
+        const lblAutonomia= document.getElementById("lblAutonomia");
+        const lblCantPue= document.getElementById("lblCantPue");
+        const lblCantRue= document.getElementById("lblCantRue");
+
+        const btnEliminar = document.getElementById("btnEliminar");
+        const btnCancelar = document.getElementById("btnCancelar");
+        const btnAgregarATabla = document.getElementById("btnAgregarATabla");
+
+        
+
+        class Vehiculo
+        {
+            id;
+            modelo;
+            anoFab;
+            velMax;
+
+            constructor(id, modelo, anoFab, velMax)
+            {
+                this.id = id;
+                this.modelo = modelo;
+                this.anoFab = anoFab;
+                this.velMax = velMax;
+            }
+
+            ToString()
+            {
+                return "--Datos del Vehiculo--\nId: " + this.id + ", Modelo: " + this.modelo + ", Año fabricacion: " + this.anoFab + ", Velocidad maxima: " + this.velMax;
+            }
+
+        }
+
+        class Aereo extends Vehiculo
+        {
+            altMax;
+            autonomia;
+
+            constructor(id, modelo, anoFab, velMax, altMax, autonomia)
+            {
+                super(id, modelo, anoFab, velMax);
+                this.altMax = altMax;
+                this.autonomia = autonomia;
+            }
+
+            ToString()
+            {
+                return super.ToString() + ", Altura maxima: " + this.altMax + ", Autonomia: " + this.autonomia;
+            }
+
+            //Filtrado
+            static FiltroObjetos(elemento, indice, vector)
+            {   
+                return elemento.hasOwnProperty("altMax");
+            }
+
+            static RetornarObjetos(arrayObjetos)
+            {
+                return arrayObjetos.filter(Aereo.FiltroObjetos); 
+            }
+
+            static InstanciarObjetos(array)
+            {
+                let arrayObjetos = Aereo.RetornarObjetos(array);
+                let arrayInstanciados = []; 
+                let objetoInstanciado;
+
+                if(arrayObjetos != null)
+                {
+                    for(let i = 0; i < arrayObjetos.length; i++)
+                    {
+                        objetoInstanciado = new Aereo(arrayObjetos[i].id, arrayObjetos[i].modelo, arrayObjetos[i].anoFab, arrayObjetos[i].velMax, arrayObjetos[i].altMax, arrayObjetos[i].autonomia);
+                        arrayInstanciados.push(objetoInstanciado);
+                    }
+                }
+                return arrayInstanciados;
+            }
+
+        }
+
+        class Terrestre extends Vehiculo
+        {
+            cantPue;
+            cantRue;
+
+            constructor(id, modelo, anoFab, velMax, cantPue, cantRue)
+            {
+                super(id, modelo, anoFab, velMax);
+                this.cantPue = cantPue;
+                this.cantRue = cantRue;
+            }
+
+            ToString()
+            {
+                return super.ToString() + ", Cantidad puertas: " + this.cantPue + ", Cantidad ruedas: " + this.cantRue;
+            }
+
+            //Filtrado
+            static FiltroObjetos(elemento, indice, vector)
+            {   
+                return elemento.hasOwnProperty("cantPue");
+            }
+
+            static RetornarObjetos(arrayObjetos)
+            {
+                return arrayObjetos.filter(Terrestre.FiltroObjetos); 
+            }
+
+            static InstanciarObjetos(array)
+            {
+                let arrayObjetos = Terrestre.RetornarObjetos(array);
+                let arrayInstanciados = []; 
+                let objetoInstanciado;
+
+                if(arrayObjetos != null)
+                {
+                    for(let i = 0; i < arrayObjetos.length; i++)
+                    {
+                        objetoInstanciado = new Terrestre(arrayObjetos[i].id, arrayObjetos[i].modelo, arrayObjetos[i].anoFab, arrayObjetos[i].velMax, arrayObjetos[i].cantPue, arrayObjetos[i].cantRue);
+                        arrayInstanciados.push(objetoInstanciado);
+                    }
+                }
+                return arrayInstanciados;
+            }
+        }
+
+        let cadena = '[{"id":14, "modelo":"Ferrari F100", "anoFab":1998, "velMax":400, "cantPue":2,"cantRue":4},{"id":51, "modelo":"Dodge Viper", "anoFab":1991, "velMax":266,"cantPue":2, "cantRue":4},{"id":67, "modelo":"Boeing CH-47 Chinook","anoFab":1962, "velMax":302, "altMax":6, "autonomia":1200},{"id":666,"modelo":"Aprilia RSV 1000 R", "anoFab":2004, "velMax":280, "cantPue":0,"cantRue":2},{"id":872, "modelo":"Boeing 747-400", "anoFab":1989, "velMax":988,"altMax":13, "autonomia":13450},{"id":742, "modelo":"Cessna CH-1 SkyhookR","anoFab":1953, "velMax":174, "altMax":3, "autonomia":870}]';
+
+        function CadenaAArrayObjetos(string)
+        {
+            return JSON.parse(string);
+        }
+
+        let arrayObjetosGenericos = CadenaAArrayObjetos(cadena);
+        let arrayAereos = Aereo.InstanciarObjetos(arrayObjetosGenericos);   
+        let arrayTerrestres = Terrestre.InstanciarObjetos(arrayObjetosGenericos);
+
+        //Generacion de tabla
+        function GenerarFila(objeto)
+        {
+            let fila = document.createElement("tr");
+            let celda1 = document.createElement("td");  
+            let dato = objeto.id;   
+            celda1.appendChild(document.createTextNode(dato)); 
+            fila.appendChild(celda1); 
+                
+            let celda2 = document.createElement("td");  
+            let dato2 = objeto.modelo;  
+            celda2.appendChild(document.createTextNode(dato2));  
+            fila.appendChild(celda2);
+                
+            let celda3 = document.createElement("td");  
+            let dato3 = objeto.anoFab;  
+            celda3.appendChild(document.createTextNode(dato3));  
+            fila.appendChild(celda3);
+            
+            let celdaVelMax = document.createElement("td");  
+            let datoVelMax = objeto.velMax;  
+            celdaVelMax.appendChild(document.createTextNode(datoVelMax));  
+            fila.appendChild(celdaVelMax);
+
+            let celda4 = document.createElement("td");
+            let dato4;
+            if(objeto.hasOwnProperty("altMax"))
+            {
+                dato4 = objeto.altMax;
+            }
+            else
+            {
+                dato4 = "";
+            }
+            celda4.appendChild(document.createTextNode(dato4));
+            fila.appendChild(celda4);
+
+            let celda5 = document.createElement("td");
+            let dato5;
+            if(objeto.hasOwnProperty("autonomia"))
+            {
+                dato5 = objeto.autonomia;
+            }
+            else
+            {
+                dato5 = "";
+            }
+            celda5.appendChild(document.createTextNode(dato5));
+            fila.appendChild(celda5);
+
+            let celda6 = document.createElement("td");
+            let dato6;
+            if(objeto.hasOwnProperty("cantPue"))
+            {
+                dato6 = objeto.cantPue;
+            }
+            else
+            {
+                dato6 = "";
+            }
+            celda6.appendChild(document.createTextNode(dato6));
+            fila.appendChild(celda6);
+
+            let celda7 = document.createElement("td");
+            let dato7;
+            if(objeto.hasOwnProperty("cantRue"))
+            {
+                dato7 = objeto.cantRue;
+            }
+            else
+            {
+                dato7 = "";
+            }
+            celda7.appendChild(document.createTextNode(dato7));
+            fila.appendChild(celda7);
+
+            cuerpoTabla.appendChild(fila);
+
+        }
+
+        function GenerarTabla(array)
+        {
+            array.forEach(element => {
+                GenerarFila(element);
+            });
+        }
+
+        GenerarTabla(arrayObjetosGenericos);
+
+        //Mostrar filtro
+        function MostrarTablaSegunSelect() 
+        {
+            BorrarTabla();
+
+            switch(cmbFiltro.value)
+            {
+                case "Aereos":
+                    GenerarTabla(arrayAereos);
+                    break;
+                    case "Terrestres":
+                        GenerarTabla(arrayTerrestres);
+                         break;
+                         default:
+                            GenerarTabla(arrayObjetosGenericos);
+                            break;
+            }
+        }
+
+        function BorrarTabla()
+        {
+            while(cuerpoTabla.hasChildNodes())
+            {
+                cuerpoTabla.removeChild(cuerpoTabla.firstChild);
+            }
+        }
+
+        //Calcular Promedio ids
+        function CalcularPromedio()
+        {
+            let retorno = 0;
+            let sumaIds = 0;
+
+            switch(cmbFiltro.value)
+            {
+                case "Aereos": 
+                    let vectorIdAereos = arrayAereos.map((e,i,v) =>
+                    {
+                        return e.id;
+                    });
+                    if(vectorIdAereos.length > 0)
+                    {
+                        vectorIdAereos.forEach((id) => {sumaIds += parseInt(id)});
+                        retorno = sumaIds/vectorIdAereos.length;
+                        
+                    }
+                    break;
+                    case "Terrestres":
+                        let vectorIdTerrestres = arrayTerrestres.map((e,i,v) =>
+                        {
+                            return e.id;
+                        });
+                        if(vectorIdTerrestres.length > 0)
+                        {
+                            vectorIdTerrestres.forEach((id) => {sumaIds += parseInt(id)});
+                            retorno = sumaIds/vectorIdTerrestres.length;
+                            
+                        }
+                        break;
+                        default:
+                        let vectorIdGenerico = arrayObjetosGenericos.map((e,i,v) =>
+                        {
+                            return e.id;
+                        });
+                        if(vectorIdGenerico.length > 0)
+                        {
+                            vectorIdGenerico.forEach((id) => {sumaIds += parseInt(id)});
+                            retorno = sumaIds/vectorIdGenerico.length;
+                            
+                        }
+                            break;
+            }
+            return retorno;
+        }
+
+        //Ocultar-Mostrar 
+        function OcultarColumna(targetId)
+        {
+            let filas = cuerpoTabla.childNodes;
+            let fila;
+            
+            switch(targetId)
+            {
+                case "chkId":
+                    for(let i = 0; i < filas.length; i++)
+                    {
+                        fila = filas[i].childNodes;
+                        if(fila[0] != null)
+                        {
+                            fila[0].classList.remove("mostrar");
+                            fila[0].classList.add("ocultar");
+                        }
+                    }
+                    break;
+                    case "chkModelo":
+                        for(let i = 0; i < filas.length; i++)
+                        {
+                            fila = filas[i].childNodes;
+                            if(fila[1] != null)
+                            {
+                                fila[1].classList.remove("mostrar");
+                                fila[1].classList.add("ocultar");
+                            }
+                        }
+                        break;
+                        case "chkAnoFab":
+                            for(let i = 0; i < filas.length; i++)
+                            {
+                                fila = filas[i].childNodes;
+                                if(fila[2] != null)
+                                {
+                                    fila[2].classList.remove("mostrar");
+                                    fila[2].classList.add("ocultar");
+                                }
+                            }
+                            break;
+                            case "chkVelMax":
+                                for(let i = 0; i < filas.length; i++)
+                                {
+                                    fila = filas[i].childNodes;
+                                    if(fila[3] != null)
+                                    {
+                                        fila[3].classList.remove("mostrar");
+                                        fila[3].classList.add("ocultar");
+                                    }
+                                }
+                                break;
+                                case "chkAltMax":
+                                    for(let i = 0; i < filas.length; i++)
+                                    {
+                                        fila = filas[i].childNodes;
+                                        if(fila[4] != null)
+                                        {
+                                            fila[4].classList.remove("mostrar");
+                                            fila[4].classList.add("ocultar");
+                                        }
+                                    }
+                                    break;
+                                    case "chkAutonomia":
+                                        for(let i = 0; i < filas.length; i++)
+                                        {
+                                            fila = filas[i].childNodes;
+                                            if(fila[5] != null)
+                                            {
+                                                fila[5].classList.remove("mostrar");
+                                                fila[5].classList.add("ocultar");
+                                            }
+                                        }
+                                        break;
+                                        case "chkCantPue":
+                                            for(let i = 0; i < filas.length; i++)
+                                            {
+                                                fila = filas[i].childNodes;
+                                                if(fila[6] != null)
+                                                {
+                                                    fila[6].classList.remove("mostrar");
+                                                    fila[6].classList.add("ocultar");
+                                                }
+                                            }
+                                            break;
+                                            case "chkCantRue":
+                                            for(let i = 0; i < filas.length; i++)
+                                            {
+                                                fila = filas[i].childNodes;
+                                                if(fila[7] != null)
+                                                {
+                                                    fila[7].classList.remove("mostrar");
+                                                    fila[7].classList.add("ocultar");
+                                                }
+                                            }
+                                            break;
+                                            
+
+                                            
+            }
+
+
+        }
+
+        function MostrarColumna(targetId)
+        {
+            let filas = cuerpoTabla.childNodes;
+            let fila;
+
+            switch(targetId)
+            {
+                case "chkId":
+                    for(let i = 0; i < filas.length; i++)
+                    {
+                        fila = filas[i].childNodes;
+                        if(fila[0] != null)
+                        {
+                            fila[0].classList.remove("ocultar");
+                            fila[0].classList.add("mostrar");
+                        }
+                    }
+                    break;
+                    case "chkModelo":
+                        for(let i = 0; i < filas.length; i++)
+                        {
+                            fila = filas[i].childNodes;
+                            if(fila[1] != null)
+                            {
+                                fila[1].classList.remove("ocultar");
+                                fila[1].classList.add("mostrar");
+                            }
+                        }
+                        break;
+                        case "chkAnoFab":
+                            for(let i = 0; i < filas.length; i++)
+                            {
+                                fila = filas[i].childNodes;
+                                if(fila[2] != null)
+                                {
+                                    fila[2].classList.remove("ocultar");
+                                    fila[2].classList.add("mostrar");
+                                }
+                            }
+                            break;
+                            case "chkVelMax":
+                                for(let i = 0; i < filas.length; i++)
+                                {
+                                    fila = filas[i].childNodes;
+                                    if(fila[3] != null)
+                                    {
+                                        fila[3].classList.remove("ocultar");
+                                        fila[3].classList.add("mostrar");
+                                    }
+                                }
+                                break;
+                                case "chkAltMax":
+                                    for(let i = 0; i < filas.length; i++)
+                                    {
+                                        fila = filas[i].childNodes;
+                                        if(fila[4] != null)
+                                        {
+                                            fila[4].classList.remove("ocultar");
+                                            fila[4].classList.add("mostrar");
+                                        }
+                                    }
+                                    break;
+                                    case "chkAutonomia":
+                                        for(let i = 0; i < filas.length; i++)
+                                        {
+                                            fila = filas[i].childNodes;
+                                            if(fila[5] != null)
+                                            {
+                                                fila[5].classList.remove("ocultar");
+                                                fila[5].classList.add("mostrar");
+                                            }
+                                        }
+                                        break;
+                                        case "chkCantPue":
+                                            for(let i = 0; i < filas.length; i++)
+                                            {
+                                                fila = filas[i].childNodes;
+                                                if(fila[6] != null)
+                                                {
+                                                    fila[6].classList.remove("ocultar");
+                                                    fila[6].classList.add("mostrar");
+                                                }
+                                            }
+                                            break;
+                                            case "chkCantRue":
+                                            for(let i = 0; i < filas.length; i++)
+                                            {
+                                                fila = filas[i].childNodes;
+                                                if(fila[7] != null)
+                                                {
+                                                    fila[7].classList.remove("ocultar");
+                                                    fila[7].classList.add("mostrar");
+                                                }
+                                            }
+                                            break;
+                                            
+            }
+        }
+
+        function OcultarMostrar(target) 
+        {
+            if(target.checked)  
+            {
+                MostrarColumna(target.id);
+            }
+            else
+            {
+                OcultarColumna(target.id);  
+            }
+        }
+
+         //Ordenar
+         function Ordenar(targetId)
+                    {
+                        switch(cmbFiltro.value)
+                        {
+                            case "Aereos":
+                                if(targetId == "btnId")
+                                {
+                                    arrayAereos.sort((o1,o2) => o1.id - o2.id);
+                                }
+                                else if(targetId == "btnModelo")
+                                {
+                                    arrayAereos.sort((o1,o2) => {
+                                                if(o1.modelo < o2.modelo)
+                                                {
+                                                    return -1;
+                                                }
+                                            });
+                                }
+                                else if(targetId == "btnAnoFab")
+                                {
+                                    arrayAereos.sort((o1,o2) => {
+                                                if(o1.anoFab < o2.anoFab)
+                                                {
+                                                    return -1;
+                                                }
+                                            });
+                                }
+                                else if(targetId == "btnVelMax")
+                                {
+                                    arrayAereos.sort((o1,o2) => {
+                                        
+                                        if(o1.velMax < o2.velMax)
+                                        {
+                                            return -1;
+                                        }
+                                        });
+                                }
+                                else if(targetId == "btnAutonomia")
+                                {
+                                    arrayAereos.sort((o1,o2) => {
+                                        
+                                        if(o1.autonomia < o2.autonomia)
+                                        {
+                                            return -1;
+                                        }
+                                        });
+                                }
+                                else
+                                {
+                                    arrayAereos.sort((o1,o2) => {
+                                        if(o1.altMax < o2.altMax)
+                                        {
+                                            return -1;
+                                        }
+                                    });
+                                }
+                                MostrarTablaSegunSelect(arrayAereos);
+                                break;
+                                case "Terrestres":
+                                if(targetId == "btnId")
+                                {
+                                    arrayTerrestres.sort((o1,o2) => o1.id - o2.id);
+                                }
+                                else if(targetId == "btnModelo")
+                                {
+                                    arrayTerrestres.sort((o1,o2) => {
+                                                if(o1.modelo < o2.modelo)
+                                                {
+                                                    return -1;
+                                                }
+                                            });
+                                }
+                                else if(targetId == "btnAnoFab")
+                                {
+                                    arrayTerrestres.sort((o1,o2) => {
+                                                if(o1.anoFab < o2.anoFab)
+                                                {
+                                                    return -1;
+                                                }
+                                            });
+                                }
+                                else if(targetId == "btnVelMax")
+                                {
+                                    arrayTerrestres.sort((o1,o2) => {
+                                        
+                                        if(o1.velMax < o2.velMax)
+                                        {
+                                            return -1;
+                                        }
+                                        });
+                                }
+                                    else if(targetId == "btnCantPue")
+                                    {
+                                        arrayTerrestres.sort((o1,o2) => {
+                                                if(o1.cantPue < o2.cantPue)
+                                                {
+                                                    return -1;
+                                                }
+                                            });
+                                    }
+                                    else
+                                    {
+                                        
+                                        arrayTerrestres.sort((o1,o2) => {
+                                            if(o1.cantRue < o2.cantRue)
+                                            {
+                                                return -1;
+                                            }
+                                        });
+                                    }
+                                    MostrarTablaSegunSelect(arrayTerrestres);
+                                    break;
+                                    default:
+                                    if(targetId == "btnId")
+                                {
+                                    arrayObjetosGenericos.sort((o1,o2) => o1.id - o2.id);
+                                }
+                                else if(targetId == "btnModelo")
+                                {
+                                    arrayObjetosGenericos.sort((o1,o2) => {
+                                                if(o1.modelo < o2.modelo)
+                                                {
+                                                    return -1;
+                                                }
+                                            });
+                                }
+                                else if(targetId == "btnAnoFab")
+                                {
+                                    arrayObjetosGenericos.sort((o1,o2) => {
+                                                if(o1.anoFab < o2.anoFab)
+                                                {
+                                                    return -1;
+                                                }
+                                            });
+                                }
+                                else if(targetId == "btnVelMax")
+                                {
+                                    arrayObjetosGenericos.sort((o1,o2) => {
+                                        
+                                        if(o1.velMax < o2.velMax)
+                                        {
+                                            return -1;
+                                        }
+                                        });
+                                }
+                                        else if(targetId == "btnAltMax")
+                                        {
+                                            arrayObjetosGenericos.sort((o1,o2) => {
+                                                if(!o1.hasOwnProperty("altMax") && o2.hasOwnProperty("altMax"))
+                                                {
+                                                    return -1;
+                                                }
+                                                else if(o1.hasOwnProperty("altMax") && !o2.hasOwnProperty("altMax"))
+                                                {
+                                                    return 1;
+                                                }
+                                                else if(!o1.hasOwnProperty("altMax") && !o2.hasOwnProperty("altMax"))
+                                                {
+                                                    return 0;
+                                                }
+                                                else if(o1.altMax < o2.altMax)
+                                                {
+                                                    return -1;
+                                                }
+                                            });
+                                        }
+                                        else if(targetId == "btnAutonomia")
+                                        {
+                                            arrayObjetosGenericos.sort((o1,o2) => {
+                                                if(!o1.hasOwnProperty("autonomia") && o2.hasOwnProperty("autonomia"))
+                                                {
+                                                    return -1;
+                                                }
+                                                else if(o1.hasOwnProperty("autonomia") && !o2.hasOwnProperty("autonomia"))
+                                                {
+                                                    return 1;
+                                                }
+                                                else if(!o1.hasOwnProperty("autonomia") && !o2.hasOwnProperty("autonomia"))
+                                                {
+                                                    return 0;
+                                                }
+                                                else if(o1.autonomia < o2.autonomia)
+                                                {
+                                                    return -1;
+                                                }
+                                            });
+                                        }
+                                        else if(targetId == "btnCantPue")
+                                        {
+                                            arrayObjetosGenericos.sort((o1,o2) => {
+                                                if(!o1.hasOwnProperty("cantPue") && o2.hasOwnProperty("cantPue"))
+                                                {
+                                                    return -1;
+                                                }
+                                                else if(o1.hasOwnProperty("cantPue") && !o2.hasOwnProperty("cantPue"))
+                                                {
+                                                    return 1;
+                                                }
+                                                else if(!o1.hasOwnProperty("cantPue") && !o2.hasOwnProperty("cantPue"))
+                                                {
+                                                    return 0;
+                                                }
+                                                else if(o1.cantPue < o2.cantPue)
+                                                {
+                                                    return -1;
+                                                }
+                                            });
+                                        }
+                                        else
+                                        {
+                                            arrayObjetosGenericos.sort((o1,o2) => {
+                                                if(!o1.hasOwnProperty("cantRue") && o2.hasOwnProperty("cantRue"))
+                                                {
+                                                    return -1;
+                                                }
+                                                else if(o1.hasOwnProperty("cantRue") && !o2.hasOwnProperty("cantRue"))
+                                                {
+                                                    return 1;
+                                                }
+                                                else if(!o1.hasOwnProperty("cantRue") && !o2.hasOwnProperty("cantRue"))
+                                                {
+                                                    return 0;
+                                                }
+                                                else if( o1.cantRue < o2.cantRue)
+                                                {
+                                                    return -1;
+                                                }
+                                               
+                                            });
+                                        }
+                                        MostrarTablaSegunSelect(arrayObjetosGenericos);
+                                        break;
+                                    
+                        }
+                    }
+
+        //Abm
+        function ValidarCampos()
+        {
+            if( isNaN(txtModelo.value) && txtModelo.value != "" &&
+                !isNaN(txtAnoFab.value) && txtAnoFab.value != "" &&
+                !isNaN(txtVelMax.value) && txtVelMax.value != "" )
+                {
+                    if(cmbTipo.value == "Aereo")
+                    {
+                        if( !isNaN(txtAltMax.value) && txtAltMax.value != "" && 
+                            !isNaN(txtAutonomia.value) && txtAutonomia.value != "" )
+                            {
+                                return true;
+                            }
+                    }
+                    else if(cmbTipo.value == "Terrestre")
+                    {
+                        if( !isNaN(txtCantPue.value) && txtCantPue.value != "" && 
+                            !isNaN(txtCantRue.value) && txtCantRue.value != "")
+                            {
+                                return true;
+                            }
+                    }
+                    return true;
+                }
+                return false;
+        }
+
+        function CargarInputs(target)
+        {
+            let listaDeNodos = target.parentNode.childNodes;
+           
+            txtId.value = listaDeNodos[0].innerHTML;
+            txtModelo.value = listaDeNodos[1].innerHTML;
+            txtAnoFab.value = listaDeNodos[2].innerHTML;
+            txtVelMax.value = listaDeNodos[3].innerHTML;
+            txtAltMax.value = listaDeNodos[4].innerHTML;
+            txtAutonomia.value = listaDeNodos[5].innerHTML;
+            txtCantPue.value = listaDeNodos[6].innerHTML;
+            txtCantRue.value = listaDeNodos[7].innerHTML;
+                        
+
+        }
+
+        //Modificar
+        function Modificar()
+        {
+            if(!ValidarCampos())
+            {
+                alert("Error en los campos, verifique datos ingresados");
+                return false;
+            }
+            
+            if(txtId.value == "")
+            {
+                alert("No hay una fila seleccionada para modificar, haga doble click sobre la fila a modificar");
+                return false;
+            }
+
+            for(let i = 0; i < arrayObjetosGenericos.length; i++)
+            {
+                if(arrayObjetosGenericos[i].id == txtId.value)
+                    {
+                        arrayObjetosGenericos[i].modelo = txtModelo.value;
+                        arrayObjetosGenericos[i].anoFab = txtAnoFab.value;
+                        arrayObjetosGenericos[i].velMax = txtVelMax.value;
+                        arrayObjetosGenericos[i].altMax = txtAltMax.value;
+                        arrayObjetosGenericos[i].autonomia = txtAutonomia.value;
+                        arrayObjetosGenericos[i].cantPue = txtCantPue.value;
+                        arrayObjetosGenericos[i].cantRue = txtCantRue.value;
+                        
+
+                        arrayAereos.forEach((a) => {
+                            if(a.id == txtId.value)
+                            {
+                                a.modelo = txtModelo.value;
+                                a.anoFab = txtAnoFab.value;
+                                a.velMax = txtVelMax.value;
+                                a.altMax = txtAltMax.value;
+                                a.autonomia = txtAutonomia.value;
+                            }
+                        });
+
+                        arrayTerrestres.forEach((a) => {
+                            if(a.id == txtId.value)
+                            {
+                                a.modelo = txtModelo.value;
+                                a.anoFab = txtAnoFab.value;
+                                a.velMax = txtVelMax.value;
+                                a.cantPue = txtCantPue.value;
+                                a.cantRue = txtCantRue.value;
+                            }
+                        });
+                                    
+                        break;
+                    }
+            }
+                        
+            cmbFiltro.value = "Todos";
+            MostrarTablaSegunSelect(arrayObjetosGenericos);
+            
+            return true;
+                       
+        }
+
+        function LimpiarInputs()
+        {
+            txtId.value = "";
+            txtModelo.value = "";
+            txtAnoFab.value = "";
+            txtVelMax.value = "";
+            txtAltMax.value = "";
+            txtAutonomia.value = "";
+            txtCantPue.value = "";
+            txtCantRue.value = "";
+        }
+
+        //Eliminar
+        function EliminarFila()
+        {
+            let filas = cuerpoTabla.childNodes;
+            let fila;
+
+            if(txtId.value == "")
+            {
+                alert("No hay una fila seleccionada para eliminar, haga doble click sobre la fila a eliminar");
+                return false;
+            }
+
+            for(let i = 0; i < filas.length; i++)
+            {
+                fila = filas[i].childNodes;
+                if(fila[0] != null)
+                {
+                    if(fila[0].innerHTML == txtId.value)
+                    {
+                        cuerpoTabla.removeChild(filas[i]);
+                        let j = 0;
+                        
+                        arrayObjetosGenericos.forEach((o) => {
+                        
+                            if(o.id == txtId.value)
+                            {
+                                
+                                arrayObjetosGenericos.splice(j,1);
+                            }
+                            j++;
+                        });
+                        
+                        j = 0;
+                        arrayAereos.forEach((a) => {
+                            
+                            if(a.id == txtId.value)
+                            {
+                                arrayAereos.splice(j,1);
+                            }
+                            j++;
+                        });
+
+                        j = 0;
+                        arrayTerrestres.forEach((t) => {
+                            
+                            if(t.id == txtId.value)
+                            {
+                                
+                                arrayTerrestres.splice(j,1);
+                                
+                                
+                            }
+                            j++;
+                        });
+                        
+                        break;
+                    }
+                }
+            }
+            
+            return true;
+
+        }
+
+        //Agregar
+        function Agregar()
+        {
+            if(!ValidarCampos())
+            {
+                alert("Error en los campos, verifique datos ingresados");
+                return false;
+            }
+
+            let arrayNumeros = [Math.floor(Math.random() * (500 - 1) + 1), Math.floor(Math.random() * (1000 - 100) + 100), Math.floor(Math.random() * (500 - 1) + 1)];
+
+            let id = arrayNumeros.reduce((valorAnt, elemento, indice, vector) => {
+                return valorAnt + elemento;
+            });
+
+            
+            
+            switch(cmbTipo.value)
+            {
+                case "Aereo":
+                let aereo = new Aereo(id, txtModelo.value, txtAnoFab.value, txtVelMax.value, txtAltMax.value, txtAutonomia.value);
+                    arrayAereos.push(aereo);
+                    arrayObjetosGenericos.push(aereo);
+                    console.log(aereo.ToString());
+                    if(cmbFiltro.value != "Terrestres")
+                    {
+                        GenerarFila(aereo);
+                    }
+                    break;
+                    case "Terrestre":
+                        let terrestre = new Terrestre(id, txtModelo.value, txtAnoFab.value, txtVelMax.value, txtCantPue.value, txtCantRue.value);
+                        arrayTerrestres.push(terrestre);
+                        arrayObjetosGenericos.push(terrestre);
+                        console.log(terrestre.ToString());
+                        if(cmbFiltro.value != "Aereos")
+                        {
+                            GenerarFila(terrestre);
+                        }
+                        break;
+            }
+            
+            LimpiarInputs();
+            return true;
+        }
+
+        //Manejadores de eventos
+        btnAgregar.addEventListener("click", (e) => {
+            frmAbm.classList.remove("ocultar");
+        });
+
+        filaChk.addEventListener("click", (e) => OcultarMostrar(e.target));
+
+        cmbFiltro.addEventListener("change", (e) => MostrarTablaSegunSelect());
+        
+        btnCalcular.addEventListener("click", (e) => {
+            txtCalcular.value = CalcularPromedio();
+        });
+
+        btnId.addEventListener("click", (e) => Ordenar(e.target.id));
+        btnModelo.addEventListener("click", (e) => Ordenar(e.target.id));
+        btnAnoFab.addEventListener("click", (e) => Ordenar(e.target.id));
+        btnVelMax.addEventListener("click", (e) => Ordenar(e.target.id));
+        btnAltMax.addEventListener("click", (e) => Ordenar(e.target.id));
+        btnAutonomia.addEventListener("click", (e) => Ordenar(e.target.id));
+        btnCantPue.addEventListener("click", (e) => Ordenar(e.target.id));
+        btnCantRue.addEventListener("click", (e) => Ordenar(e.target.id));
+
+        
+        cuerpoTabla.addEventListener("dblclick", (e) => {
+            frmAbm.classList.remove("ocultar");    
+            CargarInputs(e.target)
+        });
+
+        btnModificar.addEventListener("click", (e) =>{
+            Modificar();
+            LimpiarInputs();
+            frmAbm.classList.add("ocultar"); 
+        });
+
+        cmbTipo.addEventListener("change", (e) => { 
+            if(cmbTipo.value == "Aereo")
+            {
+                txtAltMax.classList.remove("ocultar");
+                lblAltMax.classList.remove("ocultar");
+                txtAutonomia.classList.remove("ocultar");
+                lblAutonomia.classList.remove("ocultar");
+                
+                txtCantPue.classList.add("ocultar");
+                lblCantPue.classList.add("ocultar");
+                txtCantRue.classList.add("ocultar");
+                lblCantRue.classList.add("ocultar");
+            }
+            else
+            {
+                txtAltMax.classList.add("ocultar");
+                lblAltMax.classList.add("ocultar");
+                txtAutonomia.classList.add("ocultar");
+                lblAutonomia.classList.add("ocultar");
+                
+                txtCantPue.classList.remove("ocultar");
+                lblCantPue.classList.remove("ocultar");
+                txtCantRue.classList.remove("ocultar");
+                lblCantRue.classList.remove("ocultar");
+            }
+        });
+
+        btnEliminar.addEventListener("click", (e) => {
+            EliminarFila();
+            LimpiarInputs();
+            frmAbm.classList.add("ocultar");
+        });
+
+        btnCancelar.addEventListener("click", (e) => frmAbm.classList.add("ocultar"));
+
+        btnAgregarATabla.addEventListener("click", (e) => {
+            Agregar();
+            LimpiarInputs();
+            frmAbm.classList.add("ocultar");
+        });
+    </script>
+
+</body>
+</html>
